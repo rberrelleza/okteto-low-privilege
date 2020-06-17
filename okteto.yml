@@ -1,0 +1,23 @@
+name: hey
+image: okteto/golang:1
+command: bash
+workdir: /okteto
+forward:
+- 2345:2345
+- 8080:8080
+volumes:
+- /go/pkg/
+- /root/.cache/go-build/
+persistentVolume:
+  enabled: true
+resources:
+  limits:
+    cpu: "0.5"
+    memory: 1Gi
+securityContext:
+  runAsUser: 1000
+  runAsGroup: 1000
+  fsGroup: 1000
+  capabilities:
+    add:
+    - SYS_PTRACE
